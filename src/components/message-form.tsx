@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const MessageForm = () => {
+const MessageForm = (props) => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
@@ -10,11 +10,22 @@ const MessageForm = () => {
   //   setName(e.target.value)
   // }
 
+  const publishMessage = (e) => {
+    e.preventDefault();
+    const newMessage = {
+      name: name,
+      message: message,
+      date: Date.now(),
+      id: 21,
+    };
+    props.updateMessages(newMessage);
+  };
+
   return (
     <>
       <h1> Annonymous Message Board</h1>
       <p>Write Your Message Here</p>
-      <form>
+      <form onSubmit={publishMessage}>
         <label htmlFor="Name">Your Name</label>
         <input
           onInput={(e) => {
