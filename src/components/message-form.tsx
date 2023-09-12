@@ -27,12 +27,14 @@ const MessageForm = (props) => {
     };
     publishTodb(newMessage);
     props.setFormTrigger(true);
+    setName("");
+    setMessage("");
   };
 
   return (
     <>
       <h1> Annonymous Message Board</h1>
-      <p>Write Your Message Here</p>
+      <h3>Write Your Message Here</h3>
       <form id="my-form" onSubmit={publishMessage}>
         <label htmlFor="Name">Your Name</label>
         <input
@@ -45,17 +47,16 @@ const MessageForm = (props) => {
           placeholder="Type here what you want to be called"
           type="text"
         />
-        <label htmlFor="Name">Message</label>
-        <input
-          onInput={(e) => {
+        <label htmlFor="message">Message</label>
+        <textarea
+          onChange={(e) => {
             e.preventDefault();
             setMessage(e.target.value);
           }}
-          id="name"
+          id="message"
           value={message}
           placeholder="Type here what you want to say to the world"
-          type="text"
-        />
+        ></textarea>
         <button>Publish</button>
       </form>
     </>

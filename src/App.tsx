@@ -21,21 +21,27 @@ function App() {
   }
 
   return (
-    <>
-      <MessageForm setFormTrigger={setFormTrigger} />
-      {messages.map((data) => {
-        return (
-          <>
-            <MessageList
-              name={data.name}
-              date={data.createdAt}
-              message={data.message}
-              key={data._id}
-            />
-          </>
-        );
-      })}
-    </>
+    <div className="container">
+      <div className="message-form">
+        <MessageForm setFormTrigger={setFormTrigger} />
+      </div>
+
+      <div className="message-lists">
+        <h2>Message Board</h2>
+        {messages.map((data) => {
+          return (
+            <div className="card">
+              <MessageList
+                name={data.name}
+                date={data.createdAt}
+                message={data.message}
+                key={data._id}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }
 export default App;

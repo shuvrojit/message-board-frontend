@@ -67,3 +67,74 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.container {
+  display: flex;
+  flex-direction: row;
+  max-height: 100vh;
+}
+
+.message-form {
+  position: fixed;
+  top: 0;
+  /* border: 1px solid black; */
+  width: 42vw;
+  height: 100vh;
+  padding: 3rem;
+}
+
+.message-form h1 {
+  font-size: 2rem;
+}
+
+.message-form h1 {
+  font-size: 1.5rem;
+}
+
+label {
+  font-size: 1.2rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input,
+textarea {
+  font-size: 1.2rem;
+  padding: 15px;
+}
+
+#name {
+  height: 2rem;
+}
+
+#message {
+  height: 10rem;
+}
+
+.message-lists {
+  width: 45vw;
+  /* border: 1px solid black; */
+  position: absolute;
+  /* height: 100%; */
+  right: 0;
+  top: 0;
+  padding: 2rem;
+  /* overflow: scroll; */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message-lists h2 {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.card {
+  border: 1px solid black;
+  padding: 10px;
+}
