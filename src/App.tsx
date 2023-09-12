@@ -5,10 +5,14 @@ import axios from "axios";
 
 function App() {
   const [messages, setMessages] = useState([]);
+  const [formTrigger, setFormTrigger] = useState(true);
 
   useEffect(() => {
-    getMessages();
-  }, []);
+    if (formTrigger) {
+      getMessages();
+      setFormTrigger(false);
+    }
+  }, [formTrigger]);
 
   async function getMessages() {
     const res = await axios.get("/api/messages");
@@ -16,14 +20,9 @@ function App() {
     setMessages(res.data.messages);
   }
 
-  const updateMessages = (newMessage) => {
-    const message = [newMessage, ...messages];
-    setMessages(message);
-  };
-
   return (
     <>
-      <MessageForm updateMessages={updateMessages} />
+      <MessageForm setFormTrigger={setFormTrigger} />
       {messages.map((data) => {
         return (
           <>

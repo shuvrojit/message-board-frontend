@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 const MessageForm = (props) => {
   const [name, setName] = useState("");
@@ -10,22 +11,29 @@ const MessageForm = (props) => {
   //   setName(e.target.value)
   // }
 
+  const publishTodb = async (message) => {
+    await axios.post("/api/messages/", message, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
   const publishMessage = (e) => {
     e.preventDefault();
     const newMessage = {
       name: name,
       message: message,
-      date: Date.now(),
-      id: 21,
     };
-    props.updateMessages(newMessage);
+    publishTodb(newMessage);
+    props.setFormTrigger(true);
   };
 
   return (
     <>
       <h1> Annonymous Message Board</h1>
       <p>Write Your Message Here</p>
-      <form onSubmit={publishMessage}>
+      <form id="my-form" onSubmit={publishMessage}>
         <label htmlFor="Name">Your Name</label>
         <input
           onInput={(e) => {
