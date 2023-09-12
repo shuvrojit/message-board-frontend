@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MessageForm from "./components/message-form";
 import MessageList from "./components/message-list";
+import axios from "axios";
 
 function App() {
-  const [messages, setMessages] = useState([
-    { name: "mango", id: 23, date: Date.now(), message: "nice" },
-    { name: "ngo", id: 33, date: Date.now(), message: "nice" },
-  ]);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    getMessages();
+  }, []);
+
+  async function getMessages() {
+    const res = await axios.get("/api/messages");
+    console.log(res.data.messages);
+    setMessages(res.data.messages);
+  }
 
   const updateMessages = (newMessage) => {
     const message = [newMessage, ...messages];
@@ -17,16 +25,13 @@ function App() {
     <>
       <MessageForm updateMessages={updateMessages} />
       {messages.map((data) => {
-        {
-          console.log(data);
-        }
         return (
           <>
             <MessageList
               name={data.name}
-              date={data.date}
+              date={data.createdAt}
               message={data.message}
-              key={data.id}
+              key={data._id}
             />
           </>
         );
