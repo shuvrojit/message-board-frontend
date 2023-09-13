@@ -1,7 +1,9 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { Message } from "../types";
 
-const MessageForm = (props) => {
+
+const MessageForm = (props: any) => {
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
 
@@ -11,7 +13,7 @@ const MessageForm = (props) => {
   //   setName(e.target.value)
   // }
 
-  const publishTodb = async (message) => {
+  const publishTodb = async (message: Message) => {
     await axios.post("/api/messages/", message, {
       headers: {
         "Content-Type": "application/json",
@@ -19,7 +21,7 @@ const MessageForm = (props) => {
     });
   };
 
-  const publishMessage = (e) => {
+  const publishMessage = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newMessage = {
       name: name,
@@ -38,7 +40,7 @@ const MessageForm = (props) => {
       <form id="my-form" onSubmit={publishMessage}>
         <label htmlFor="Name">Your Name</label>
         <input
-          onInput={(e) => {
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) => {
             e.preventDefault();
             setName(e.target.value);
           }}
@@ -49,7 +51,7 @@ const MessageForm = (props) => {
         />
         <label htmlFor="message">Message</label>
         <textarea
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => {
             e.preventDefault();
             setMessage(e.target.value);
           }}
