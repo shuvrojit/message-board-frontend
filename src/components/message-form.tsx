@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Message } from "../types";
+import { baseURL } from "../App";
 
 
 const MessageForm = (props: any) => {
@@ -14,7 +15,7 @@ const MessageForm = (props: any) => {
   // }
 
   const publishTodb = async (message: Message) => {
-    await axios.post("/api/messages/", message, {
+    await axios.post(baseURL + "messages/", message, {
       headers: {
         "Content-Type": "application/json",
       },

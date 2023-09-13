@@ -4,7 +4,8 @@ import MessageList from "./components/message-list";
 import axios from "axios";
 import {Message} from "./types"
 
-const baseURL = "https://message-board-public-api.onrender.com/"
+export const baseURL = "https://message-board-public-api.onrender.com/"
+
 function App() {
   const [messages, setMessages] = useState([]);
   const [formTrigger, setFormTrigger] = useState<boolean>(true);
