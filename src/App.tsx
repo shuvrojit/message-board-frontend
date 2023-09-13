@@ -4,6 +4,7 @@ import MessageList from "./components/message-list";
 import axios from "axios";
 import {Message} from "./types"
 
+const baseURL = "https://message-board-public-api.onrender.com/"
 function App() {
   const [messages, setMessages] = useState([]);
   const [formTrigger, setFormTrigger] = useState<boolean>(true);
@@ -16,7 +17,7 @@ function App() {
   }, [formTrigger]);
 
   async function getMessages() {
-    const res = await axios.get("/api/messages");
+    const res = await axios.get(baseURL + "messages");
     setMessages(res.data.messages);
   }
 

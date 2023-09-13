@@ -1,7 +1,6 @@
 import { Message } from "../types";
 
 const MessageList = ({ name, createdAt, message }: Message) => {
-  console.log(typeof(createdAt))
   const parsedDate = new Date(createdAt).toLocaleString();
   return (
     <>
